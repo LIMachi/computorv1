@@ -6,16 +6,37 @@
 /*   By: hmartzol <hmartzol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 19:01:35 by hmartzol          #+#    #+#             */
-/*   Updated: 2018/10/15 19:03:17 by hmartzol         ###   ########.fr       */
+/*   Updated: 2018/10/16 17:37:26 by hmartzol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/computorv1.h"
-#include <stdio.h>
+
+void				beautified_real(double r)
+{
+	char	tmp[42];
+	int		i;
+
+	snprintf(tmp, 41, "%.12f", r);
+	i = 0;
+	if (tmp[i] == '-')
+		++i;
+	while (isnumber(tmp[i]))
+		++i;
+	if (tmp[i++] == '.')
+	{
+		while (isnumber(tmp[i]))
+			++i;
+		while (tmp[--i] == '0')
+			tmp[i] = '\0';
+		if (tmp[i] == '.')
+			tmp[i] = '\0';
+	}
+	printf("%s", tmp);
+}
 
 static inline void	beautified_print(double mult, long exp, char variable)
 {
-	char	tmp[42];
 	int		i;
 
 	if (mult == 0.0)
@@ -24,15 +45,8 @@ static inline void	beautified_print(double mult, long exp, char variable)
 	{
 		if (mult != 1.0)
 		{
-			snprintf(tmp, 41, "%.12f", mult);
-			i = 0;
-			while (tmp[i] != '\0')
-				++i;
-			while (i > 0 && tmp[i - 1] == '0')
-				tmp[--i] = '\0';
-			if (i > 0 && tmp[i - 1] == '.')
-				tmp[i - 1] = '\0';
-			printf("%s%s", tmp, exp ? " * " : "");
+			beautified_real(mult);
+			printf("%s", exp ? " * " : "");
 		}
 		if (exp > 0)
 			printf("%c", variable);

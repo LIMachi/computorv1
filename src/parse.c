@@ -6,16 +6,10 @@
 /*   By: hmartzol <hmartzol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 19:11:14 by hmartzol          #+#    #+#             */
-/*   Updated: 2018/10/15 19:26:36 by hmartzol         ###   ########.fr       */
+/*   Updated: 2018/10/16 17:37:31 by hmartzol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include <errno.h>
-#include <stdio.h>
-#include <math.h>
 #include "../inc/computorv1.h"
 
 static inline void	jump_spaces(char **str)
